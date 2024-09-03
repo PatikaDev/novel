@@ -8,7 +8,6 @@ import { useDebouncedCallback } from 'use-debounce';
 import { useCompletion } from 'ai/react';
 import { toast } from 'sonner';
 import va from '@vercel/analytics';
-import { defaultEditorContent } from './default-content';
 import { EditorBubbleMenu } from './bubble-menu';
 import { getPrevText } from '@/lib/editor';
 import { ImageResizer } from './extensions/image-resizer';
@@ -17,6 +16,7 @@ import { Editor as EditorClass, Extensions } from '@tiptap/core';
 import { NovelContext } from './provider';
 import VideoNode from './nodes/video';
 import { startImageUpload } from './plugins/upload-images';
+import Placeholder from '@tiptap/extension-placeholder';
 
 export default function Editor({
   completionApi = '/api/generate',
@@ -33,6 +33,8 @@ export default function Editor({
   setEditor = () => {},
   imageUploader,
   videoUploader,
+  placeholder,
+  focusPlaceholder = "Press '/' for commands",
 }: {
   /**
    * The API route to use for the OpenAI completion API.
@@ -94,6 +96,8 @@ export default function Editor({
   setEditor?: (editor?: EditorClass) => void | Promise<void>;
   imageUploader?: (file: File) => null | Promise<string>;
   videoUploader?: (file: File) => null | Promise<string>;
+  placeholder?: string;
+  focusPlaceholder?: string;
 }) {
   const [content, setContent] = useLocalStorage(storageKey, defaultValue);
   const valueSetRef = useRef(false);
@@ -110,7 +114,25 @@ export default function Editor({
 
   const editor = useEditor({
     // @ts-ignore
-    extensions: [...defaultExtensions, ...extensions, VideoNode],
+    extensions: [
+      // @ts-ignore
+      ...defaultExtensions,
+      // @ts-ignore
+      ...extensions,
+      // @ts-ignore
+      Placeholder.configure({
+        placeholder: ({ editor }) => {
+          if (editor?.isFocused) {
+            return focusPlaceholder;
+          }
+
+          return placeholder || '';
+        },
+        includeChildren: false,
+      }),
+      // @ts-ignore
+      VideoNode,
+    ],
     editorProps: {
       ...defaultEditorProps,
       ...editorProps,
