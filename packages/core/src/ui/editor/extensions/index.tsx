@@ -2,7 +2,6 @@ import StarterKit from '@tiptap/starter-kit';
 import HorizontalRule from '@tiptap/extension-horizontal-rule';
 import TiptapLink from '@tiptap/extension-link';
 import TiptapImage from '@tiptap/extension-image';
-import Placeholder from '@tiptap/extension-placeholder';
 import TiptapUnderline from '@tiptap/extension-underline';
 import TextStyle from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
@@ -109,15 +108,7 @@ export const defaultExtensions = [
       class: 'novel-rounded-lg novel-border novel-border-stone-200',
     },
   }),
-  Placeholder.configure({
-    placeholder: ({ editor }) => {
-      if (editor?.isFocused) {
-        return "Press '/' for commands";
-      }
-      return '';
-    },
-    includeChildren: false,
-  }),
+
   SlashCommand,
   TiptapUnderline,
   TextStyle,
