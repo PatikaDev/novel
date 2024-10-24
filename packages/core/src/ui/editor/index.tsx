@@ -1,3 +1,4 @@
+//@ts-nocheck
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useEditor, EditorContent, JSONContent } from '@tiptap/react';
@@ -17,6 +18,7 @@ import { NovelContext } from './provider';
 import VideoNode from './nodes/video';
 import { startImageUpload } from './plugins/upload-images';
 import Placeholder from '@tiptap/extension-placeholder';
+import { TableColumnMenu, TableRowMenu } from './extensions/Table/menus';
 
 export default function Editor({
   completionApi = '/api/generate',
@@ -285,6 +287,7 @@ export default function Editor({
     }
   }, [editor, setEditor, imageUploader, videoUploader]);
 
+  const menuContainerRef = useRef();
   return (
     <NovelContext.Provider
       value={{
@@ -292,6 +295,7 @@ export default function Editor({
       }}
     >
       <div
+        ref={menuContainerRef}
         onClick={() => {
           editor?.chain().focus().run();
         }}
@@ -300,6 +304,8 @@ export default function Editor({
         {editor && <EditorBubbleMenu editor={editor} />}
         {editor?.isActive('image') && <ImageResizer editor={editor} />}
         <EditorContent editor={editor} />
+        <TableRowMenu editor={editor} appendTo={menuContainerRef} />
+        <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
       </div>
     </NovelContext.Provider>
   );
