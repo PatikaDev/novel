@@ -25,6 +25,7 @@ import {
   Code,
   CheckSquare,
   Video,
+  Table2,
 } from 'lucide-react';
 import { LoadingCircle } from '@/ui/icons';
 import { toast } from 'sonner';
@@ -169,6 +170,25 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       icon: <Code size={18} />,
       command: ({ editor, range }: CommandProps) =>
         editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
+    },
+    {
+      title: 'Table',
+      description: 'Capture a table.',
+      searchTerms: ['table'],
+      icon: <Table2 size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.commands.insertContent([
+          {
+            type: 'paragraph',
+            attrs: {
+              class: 'is-empty is-editor-empty',
+              'data-placeholder': "Press '/' for commands",
+            },
+            content: [],
+          },
+        ]);
+        editor.chain().focus().deleteRange(range).insertTable().run();
+      },
     },
     {
       title: 'Upload Image',
@@ -377,9 +397,9 @@ const CommandList = ({
 
   return items.length > 0 ? (
     <div
-      id="slash-command"
+      id='slash-command'
       ref={commandListContainer}
-      className="novel-z-50 novel-h-auto novel-max-h-[330px] novel-w-72 novel-overflow-y-auto novel-rounded-md novel-border novel-border-stone-200 novel-bg-white novel-px-1 novel-py-2 novel-shadow-md novel-transition-all"
+      className='novel-z-50 novel-h-auto novel-max-h-[330px] novel-w-72 novel-overflow-y-auto novel-rounded-md novel-border novel-border-stone-200 novel-bg-white novel-px-1 novel-py-2 novel-shadow-md novel-transition-all'
     >
       {items.map((item: CommandItemProps, index: number) => {
         return (
@@ -390,12 +410,12 @@ const CommandList = ({
             key={index}
             onClick={() => selectItem(index)}
           >
-            <div className="novel-flex novel-h-10 novel-w-10 novel-items-center novel-justify-center novel-rounded-md novel-border novel-border-stone-200 novel-bg-white">
+            <div className='novel-flex novel-h-10 novel-w-10 novel-items-center novel-justify-center novel-rounded-md novel-border novel-border-stone-200 novel-bg-white'>
               {item.title === 'Continue writing' && isLoading ? <LoadingCircle /> : item.icon}
             </div>
             <div>
-              <p className="novel-font-medium">{item.title}</p>
-              <p className="novel-text-xs novel-text-stone-500">{item.description}</p>
+              <p className='novel-font-medium'>{item.title}</p>
+              <p className='novel-text-xs novel-text-stone-500'>{item.description}</p>
             </div>
           </button>
         );

@@ -18,7 +18,16 @@ import CustomKeymap from './custom-keymap';
 import InsertHTMLExtension from './insert-html';
 import Youtube from '@tiptap/extension-youtube';
 import InsertVideoExtension from './insert-video';
-
+// import Table from '@tiptap/extension-table';
+// import TableCell from '@tiptap/extension-table-cell';
+import TableRow from '@tiptap/extension-table-row';
+// import TableHeader from '@tiptap/extension-table-header';
+import {
+  Table,
+  TableCell,
+  TableHeader,
+  // TableRow,
+} from './Table';
 export const defaultExtensions = [
   StarterKit.configure({
     bulletList: {
@@ -116,6 +125,11 @@ export const defaultExtensions = [
   Highlight.configure({
     multicolor: true,
   }),
+
+  Table.configure({ resizable: true }),
+  TableCell,
+  TableHeader,
+  TableRow,
   TaskList.configure({
     HTMLAttributes: {
       class: 'novel-not-prose novel-pl-2',

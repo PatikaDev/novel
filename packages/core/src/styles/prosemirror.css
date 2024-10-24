@@ -1,5 +1,122 @@
 .ProseMirror {
   @apply novel-p-12 novel-px-8 sm:novel-px-12;
+
+  .tableWrapper {
+    @apply novel-my-12;
+  }
+
+  table {
+    @apply novel-border-collapse novel-border-black/10 novel-rounded novel-box-border novel-w-full;
+
+    td,
+    th {
+      @apply novel-border novel-border-black/10 novel-min-w-[100px] novel-p-2 novel-relative novel-text-left novel-align-top;
+    }
+
+    th {
+      @apply novel-font-bold;
+    }
+
+    .column-resize-handle {
+      @apply novel-bg-black/20 novel--bottom-[2px] novel-flex novel-pointer-events-none novel-absolute novel--right-1 novel-top-0 novel-w-2;
+
+      &::before {
+        @apply novel-bg-black/20 novel-h-full novel-w-[1px] novel-ml-2;
+      }
+    }
+
+    &.resize-cursor {
+      @apply novel-cursor-col-resize;
+    }
+
+    .ProseMirror-gapcursor {
+      @apply novel-relative novel-w-full novel-max-w-2xl novel-mx-auto;
+
+      &:after {
+        @apply novel-border-t-black/40 novel-w-full novel--top-[1.5em] novel-max-w-2xl novel-mx-auto novel-left-0 novel-right-0;
+      }
+    }
+
+    .selectedCell {
+      @apply novel-bg-black/5 novel-border-black/20 novel-border-double;
+    }
+
+    .grip-column,
+    .grip-row {
+      @apply novel-items-center novel-bg-black/5 novel-cursor-pointer novel-flex novel-justify-center novel-absolute novel-z-10;
+    }
+
+    .grip-column {
+      @apply novel-w-[calc(100%+1px)] novel-border-l novel-border-black/20 novel-h-3 novel-left-0 novel--ml-[1px] novel--top-3;
+
+      &:hover,
+      &.selected {
+        &::before {
+          content: '';
+          @apply novel-w-2.5;
+        }
+      }
+
+      &:hover {
+        @apply novel-bg-black/10;
+
+        &::before {
+          @apply novel-border-b-2 novel-border-dotted novel-border-black/60;
+        }
+      }
+
+      &.first {
+        @apply novel-border-transparent novel-rounded-tl-sm;
+      }
+
+      &.last {
+        @apply novel-rounded-tr-sm;
+      }
+
+      &.selected {
+        @apply novel-bg-black/30 novel-border-black/30 novel-shadow-sm;
+
+        &::before {
+          @apply novel-border-b-2 novel-border-dotted;
+        }
+      }
+    }
+
+    .grip-row {
+      @apply novel-h-[calc(100%+1px)] novel-border-t novel-border-black/20 novel--left-3 novel-w-3 novel-top-0 novel--mt-[1px];
+
+      &:hover,
+      &.selected {
+        &::before {
+          @apply novel-h-2.5;
+          content: '';
+        }
+      }
+      &:hover {
+        @apply novel-bg-black/10;
+
+        &::before {
+          @apply novel-border-l-2 novel-border-dotted novel-border-black/60;
+        }
+      }
+
+      &.first {
+        @apply novel-border-transparent novel-rounded-tl-sm;
+      }
+
+      &.last {
+        @apply novel-rounded-bl-sm;
+      }
+
+      &.selected {
+        @apply novel-bg-black/30 novel-border-black/30 novel-shadow-sm;
+
+        &::before {
+          @apply novel-border-l-2 novel-border-dotted;
+        }
+      }
+    }
+  }
 }
 
 .ProseMirror .is-editor-empty:first-child::before {
