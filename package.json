@@ -13,7 +13,6 @@
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-popover": "^1.0.6",
-    "@tippyjs/react": "^4.2.6",
     "@tiptap/core": "^2.0.4",
     "@tiptap/extension-color": "^2.0.4",
     "@tiptap/extension-highlight": "^2.0.4",
