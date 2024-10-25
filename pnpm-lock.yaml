@@ -116,9 +116,6 @@ importers:
       framer-motion:
         specifier: ^10.15.1
         version: 10.15.1(react-dom@18.2.0)(react@18.2.0)
-      headless:
-        specifier: link:@tippyjs/react/headless
-        version: link:@tippyjs/react/headless
       lucide-react:
         specifier: ^0.244.0
         version: 0.244.0(react@18.2.0)
