@@ -23,7 +23,7 @@
     "check-types": "tsc --noEmit"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.3.1"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.0.6",
@@ -56,8 +56,8 @@
     "eventsource-parser": "^0.1.0",
     "lucide-react": "^0.244.0",
     "next": "13.4.20-canary.15",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-markdown": "^8.0.7",
     "sonner": "^0.7.0",
     "tailwind-merge": "^1.14.0",
@@ -67,10 +67,10 @@
     "use-debounce": "^9.0.4"
   },
   "devDependencies": {
-    "@types/react": "^18.2.5",
+    "@types/react": "^18.3.18",
     "eslint": "^7.32.0",
     "postcss": "^8.4.29",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*",
     "tsup": "^7.2.0",
